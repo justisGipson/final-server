@@ -7,13 +7,12 @@ const validateSesh = require('../middleware/validate-sesh');
 router.post('/newItem', validateSesh, (req, res) => {
     if(!req.error){
         const newGear = {
-            itemName: req.body.itemName,
-            description: req.body.description,
-            weight: req.body.weight,
-            quantity: req.body.quantity,
+            itemName: req.body.gear.itemName,
+            description: req.body.gear.description,
+            weight: req.body.gear.weight,
+            quantity: req.body.gear.quantity,
             owner: req.user.id
         }
-
         Locker.create(newGear)
             .then(gear => res.status(200).json(gear))
             .catch(err => res.status(500).json({error: err}))
@@ -58,10 +57,10 @@ router.get('/gear/:id', validateSesh, (req, res) => {
 // update locker item
 router.put('/update/:id', validateSesh, (req, res) => {
     Locker.update({
-        itemName: req.body.itemName,
-        description: req.body.description,
-        weight: req.body.weight,
-        quantity: req.body.quantity
+        itemName: req.body.gear.itemName,
+        description: req.body.gear.description,
+        weight: req.body.gear.weight,
+        quantity: req.body.gear.quantity
     },
         {where: {id: req.params.id, owner: req.user.id}
     })
