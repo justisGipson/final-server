@@ -20,7 +20,7 @@ router.post('/newItem', validateSesh, (req, res) => {
 });
 
 // get all gear for specific user
-router.get('/all', validateSesh, (req, res) => {
+router.get('/', validateSesh, (req, res) => {
     Locker.findAll({where: {owner: req.user.id}})
         .then(
             searchSuccess = (data) => {
