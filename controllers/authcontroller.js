@@ -32,7 +32,6 @@ router.post('/signup', (req, res) => {
 
 // user log in
 router.post('/login', (req, res) => {
-    console.log(req.body.email)
     User.findOne({where: {email: req.body.email}}).then(
         user => {
             if(user){
