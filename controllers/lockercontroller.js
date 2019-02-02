@@ -63,8 +63,6 @@ router.put('/update/:id', validateSesh, (req, res) => {
         quantity: req.body.gear.quantity
     },
         {where: {id: req.params.id, owner: req.user.id}
-    },  
-        {order: sequelize.literal('id', 'ASC')
     })
     .then(
         updateSuccess = (item) => {
