@@ -1,13 +1,18 @@
 require('dotenv').config();
 
-let express = require('express');
-let app = express();
-let bodyParser = require('body-parser')
-let sequelize = require('./db');
-let auth = require('./controllers/authcontroller');
-let locker = require('./controllers/lockercontroller')
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser')
+const sequelize = require('./db');
+const http = require('http');
+const auth = require('./controllers/authcontroller');
+const locker = require('./controllers/lockercontroller');
 
 sequelize.sync();
+
+setInterval(function() {
+    http.get('http://jg-gear-locker.herokuapp.com')
+}, 30000) // wake every 5 minutes
 
 app.use(bodyParser.json());
 
