@@ -16,7 +16,7 @@ router.post('/signup', (req, res) => {
     User.create(newUser)
         .then(
             createSuccess = (user) => {
-                var token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: 60*60*24});
+                let token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: 60*60*24});
 
                 res.status(200).json({
                     user: user,
@@ -38,7 +38,7 @@ router.post('/login', (req, res) => {
                 console.log(user)
                 bcrypt.compare(req.body.password, user.passwordhash, (err, matches) => {
                     if(matches) {
-                        var token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: 60*60*24});
+                        let token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: 60*60*24});
                         res.json({
                             user: user,
                             message: 'Success!',

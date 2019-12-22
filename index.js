@@ -10,7 +10,7 @@ const locker = require('./controllers/lockercontroller');
 
 sequelize.sync();
 
-setInterval(function() {
+setInterval(() => {
     http.get('http://jg-gear-locker.herokuapp.com')
 }, 30000) // wake every 5 minutes
 
