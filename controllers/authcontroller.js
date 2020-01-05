@@ -12,7 +12,6 @@ router.post('/signup', (req, res) => {
     email: req.body.email,
     passwordhash: bcrypt.hashSync(req.body.password, 10)
     }
-
     User.create(newUser)
         .then(
             createSuccess = (user) => {
@@ -32,12 +31,11 @@ router.post('/signup', (req, res) => {
 
 // user log in
 router.post('/login', (req, res) => {
-    User.findOne({where: {email: req.body.email}}).then(
-        user => {
-            if(user){
+    User.findOne({where: {email: req.body.email}}).then( user => {
+            if (user){
                 console.log(user)
                 bcrypt.compare(req.body.password, user.passwordhash, (err, matches) => {
-                    if(matches) {
+                    if (matches) {
                         let token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: 60*60*24});
                         res.json({
                             user: user,

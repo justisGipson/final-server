@@ -7,7 +7,7 @@ sequelize.authenticate().then(
         console.log('Connected to locker server!');
     },
     function(err){
-        console.log(err);
+        console.error(err);
     }
 );
 module.exports = sequelize;
