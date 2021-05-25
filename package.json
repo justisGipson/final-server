@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "gearLocker server",
   "main": "index.js",
+  "engine": "node14"
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compress": "node compress.js",
